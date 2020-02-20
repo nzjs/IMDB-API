@@ -1,0 +1,159 @@
+// HEADER
+
+@import "../utilities/variables";
+
+.header {
+  background-color: $color-primary;
+}
+
+body.is-open {
+  overflow: hidden;
+}
+
+.header.is-open {
+  height: 100%;
+}
+
+.header__container {
+  display: flex;
+  align-items: center;
+  height: 70px;
+  position: relative;
+  padding: 0 1rem;
+
+  @media (min-width: 801px) {
+    justify-content: space-between;
+  }
+}
+
+.toggleMenu {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 45px;
+  // width: 65px;
+  height: 65px;
+  margin-right: 25px;
+
+  @media (min-width: 801px) {
+    display: none;
+  }
+}
+
+.toggleMenu .toggleMenuIcon,
+.toggleMenuIcon::before,
+.toggleMenuIcon::after {
+  content: "";
+  display: block;
+  background-color: $color-white;
+  height: 5px;
+  position: absolute;
+  width: 100%;
+}
+
+.toggleMenu .toggleMenuIcon::before {
+  top: -1rem;
+  transform: rotate(0);
+  transition: transform 0.2s;
+}
+
+.toggleMenu .toggleMenuIcon::after {
+  top: 1rem;
+  transform: rotate(0);
+  transition: transform 0.2s;
+}
+
+.toggleMenu.is-open .toggleMenuIcon {
+  background-color: transparent;
+  transition-delay: 0.1s;
+}
+
+.toggleMenu.is-open .toggleMenuIcon::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.toggleMenu.is-open .toggleMenuIcon::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+.navMenu {
+  display: none;
+  @media (min-width: 801px) {
+    display: flex;
+    align-items: center;
+  }
+}
+.navMenu.is-open {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.header__navMenu--container {
+  padding-left: 0;
+}
+
+.toggleMenu.is-open ~ .header__navMenu--container {
+  position: absolute;
+  display: flex;
+  z-index: 20;
+  left: 0;
+  margin: 0;
+  top: 70px;
+  height: 90.5vh;
+  width: 100%;
+  background-color: $color-primary;
+}
+
+.navMenu.is-open .header__navMenu--item {
+  display: flex;
+  align-items: center;
+  min-height: 50px;
+}
+
+.header__navMenu--item {
+  text-transform: capitalize;
+  list-style-type: none;
+  width: auto;
+  padding: 0 0.75rem;
+  color: #fff;
+}
+
+.header__navMenu--item .button {
+  max-width: 120px;
+  text-align: center;
+}
+
+.header__navMenu--link {
+  font-weight: 700;
+}
+
+.header .company-name {
+  display: none;
+
+  @media (min-width: 801px) {
+    display: block;
+    padding-left: 20px;
+  }
+}
+
+.header-logo {
+  flex: 1;
+}
+
+.header-logo a {
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.header .header-logo-container {
+  @media (min-width: 801px) {
+    display: flex;
+    align-items: center;
+  }
+}
