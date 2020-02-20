@@ -1,17 +1,5 @@
 const API_KEY = '9a59754';
 
-const apiURL = `https://www.omdbapi.com/?t=${searchQuery}&apikey=${API_KEY}`;
-console.log("apiURL ", apiURL);
-
-fetch(apiURL)
-    .then((response) => {
-        return response.json();
-    })
-    .then((myJson) => {
-        console.log(myJson);
-    });
-
-
 const express = require('express');
 const app = express();
 require('dotenv').config();
