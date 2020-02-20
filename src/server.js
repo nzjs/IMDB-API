@@ -1,5 +1,5 @@
 const API_KEY = '9a59754';
-// const API_KEY = 'XXXXXX';
+
 const apiURL = `https://www.omdbapi.com/?t=${searchQuery}&apikey=${API_KEY}`;
 console.log("apiURL ", apiURL);
 
@@ -16,8 +16,15 @@ const express = require('express');
 const app = express();
 require('dotenv').config();
 
-app.get('/', (req, res) => {
-    res.send('Hello World from app.js');
+app.get('/movie', (req, res) => {
+    const { query: { search: searchQuery } } = req;
+    const apiURL = `https://www.omdbapi.com/?t=${searchQuery}&apikey=${API_KEY}`;
+    console.log("apiURL ", apiURL);
+
+    fetch(apiURL)
+        .then((response) => {
+            return res.json(response);
+        })
 });
 
 const port = process.env.PORT || 3000;

@@ -8,12 +8,10 @@ const moviePlot = document.querySelector(".listing__summary")
 searchField.onkeyup = function () {
     let searchQuery = searchField.value.replace(/ /g, "%20");
 
-    // const apiURL = `https://www.omdbapi.com/?t=${searchQuery}&apikey=${API_KEY}`;
-
-    fetch(backendURL + '/search')
+    fetch(`http://localhost:3000/movie?search=${searchQuery}`);
         .then(response => {
-            return response();
-        })
+        return response();
+    })
         .then(data => {
             console.log(data)
             const title = data.Title;
