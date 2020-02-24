@@ -1,20 +1,26 @@
-const API_KEY = '9a59754';
-console.log("API_KEY ", API_KEY);
+require('dotenv').config();
+const apiKey = process.env.API_KEY
+console.log("apiKey ", apiKey);
 
 const express = require('express');
 const app = express();
-const fetch = require('node-fetch');
-require('dotenv').config();
 
-app.get('/movie', (req, res) => {
-    const { query: { search: searchQuery } } = req;
-    const apiURL = `https://www.omdbapi.com/?t=${searchQuery}&apikey=${API_KEY}`;
+app.use(express.static('public'))
+
+const { get } = require('axios');
+
+app.get('/', (req, res) => {
+    res.render('../src/pages/index')
+})
+
+app.get('/movie', async (req, res) => {
+    const { query: { search } } = req;
+    const apiURL = `https://www.omdbapi.com/?t=${search}&apikey=${apiKey}`;
     console.log("apiURL ", apiURL);
-
-    fetch(apiURL)
-        .then((response) => {
-            return res.json(response);
-        })
+    const { data } = await get(apiURL).catch(e => {
+        console.log("Error", e)
+    })
+    return res.json(data);
 });
 
 const port = 3000;
