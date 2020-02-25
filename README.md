@@ -1,3 +1,3 @@
-# README
+# Readme
 
-Fork of project to support a pull request.
+Fork of project to submit a pull request.
